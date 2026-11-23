@@ -1,0 +1,55 @@
+/* 示范模板：日/夜间双肤切换架构（源自《星轨奏鸣》）
+   原理：夜间版与日间版共用同一个 JS 基座，通过变量覆写切换视觉与 Canvas 粒子色。 */
+
+/* ===== 1. 夜间基调（默认） ===== */
+#chat-window-view {
+  --osc-particle-color: #dbe4f2; /* JS 基座会通过 getComputedStyle 读取此变量 */
+  --theme-bg: #07090e;
+  --theme-surface: #0e1015;
+  --theme-paper: #e9e7e0;
+  --theme-text: #efece4;
+  --theme-mute: #a3a9b4;
+  --theme-line: rgba(231, 229, 222, 0.2);
+  --theme-accent: #c9b98f;
+}
+
+/* ===== 2. 日间覆写条目（开启日间条目时覆盖上述变量） ===== */
+body.osc-chat-visible #chat-window-view#chat-window-view {
+  --osc-particle-color: #817765;
+  --theme-bg: #ffffff;
+  --theme-surface: #f4f4f2;
+  --theme-paper: #30343c;
+  --theme-text: #30343c;
+  --theme-mute: #767e89;
+  --theme-line: rgba(86, 96, 110, 0.22);
+  --theme-accent: #a4916e;
+  background-color: var(--theme-bg) !important;
+  background-image: none !important;
+  color: var(--theme-text) !important;
+}
+
+/* 制图底在日间模式下通过 filter 转为柔和灰线，无需重写 SVG */
+body.osc-chat-visible #chat-window-view .osc-sky {
+  filter: grayscale(1) brightness(0.52);
+}
+
+/* 透明表情防穿帮规则：配合 JS 基座的 data-osc-sticker-kind 标记 */
+#chat-window-view #message-container#message-container#message-container
+.message-sticker:is(
+  [data-osc-sticker-kind="png"],
+  [data-osc-sticker-kind="gif"],
+  [data-osc-sticker-kind="alpha"],
+  [data-osc-sticker-kind="pending"],
+  [data-osc-sticker-kind="unknown"],
+  [data-osc-sticker-kind="text"]
+) {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}

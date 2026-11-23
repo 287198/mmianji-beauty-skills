@@ -1,0 +1,68 @@
+/* 示范模板：液态玻璃实时折射底栏（源自《爱意沉入海底》）
+   原理：使用 SVG feDisplacementMap 位移贴图作为 backdrop-filter，
+   并通过 mask-image 将折射精准限制在底栏顶部圆角边缘，兼顾光学真实感与性能。 */
+
+:root {
+  /* 将 <displacement-map-base64> 替换为你的径向/边缘位移贴图 PNG Base64 */
+  --glass-lens: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cfilter id='lens' x='0' y='0' width='1' height='1' color-interpolation-filters='sRGB'%3E%3CfeImage href='data:image/png;base64,<displacement-map-base64>' x='0' y='0' width='1' height='1' preserveAspectRatio='none' result='map'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='map' scale='0.12' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/svg%3E#lens");
+}
+
+/* 响应式折射率校准：屏幕越宽，scale 越小，保证物理折射比例一致 */
+@media (min-width: 600px) {
+  :root { /* 将上述 SVG 中的 scale 调整为 0.08 */ }
+}
+@media (min-width: 1200px) {
+  :root { /* 将上述 SVG 中的 scale 调整为 0.03 */ }
+}
+
+/* 防止外层 clip-path 截断 backdrop-filter 采样 */
+#app-container {
+  clip-path: none !important;
+}
+
+/* 底栏本体透明，双伪元素分层渲染 */
+#chat-window-view .chat-input-area {
+  position: relative !important;
+  background: transparent !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ::before 负责顶部 32px 圆角边缘的实时弯曲折射 */
+#chat-window-view .chat-input-area::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  backdrop-filter: var(--glass-lens) !important;
+  -webkit-backdrop-filter: var(--glass-lens) !important;
+  mask-image: linear-gradient(to bottom, #000 0, #000 32px, transparent 42px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 32px, transparent 42px);
+}
+
+/* ::after 负责整个抽屉的提亮与增艳 */
+#chat-window-view .chat-input-area::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: -2 !important;
+  background: rgba(255, 255, 255, 0.14) !important;
+  backdrop-filter: saturate(1.12) blur(4px) !important;
+  -webkit-backdrop-filter: saturate(1.12) blur(4px) !important;
+}
+
+/* 工程兜底 1：键盘弹起缩放时临时关闭滤镜，防掉帧卡顿 */
+body.chat-keyboard-resizing #chat-window-view .chat-input-area::before,
+body.chat-keyboard-resizing #chat-window-view .chat-input-area::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 工程兜底 2：不支持 SVG URL 滤镜的内核降级为普通毛玻璃 */
+@supports not (backdrop-filter: url(#lens)) {
+  #chat-window-view .chat-input-area::before {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+}

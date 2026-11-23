@@ -1,0 +1,25 @@
+{
+  "type": "MMIANJI_BEAUTY_BUNDLE_V1",
+  "name": "主题名称",
+  "credits": {
+    "author": "作者名",
+    "source": "主题副标题或来源"
+  },
+  "scripts": [
+    {
+      "id": "theme-id.list.base-v1",
+      "name": "主题名 · 消息列表基座",
+      "mode": "hidden",
+      "source": "/* @mmianji-beauty ... */",
+      "enabled": true
+    }
+  ],
+  "styles": [
+    {
+      "name": "主题名-消息列表",
+      "css": "/* @mmianji-requires: theme-id.list.base-v1 */\n/* CSS 代码 */",
+      "isActive": true,
+      "target": "global"
+    }
+  ]
+}
