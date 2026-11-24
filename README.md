@@ -1,6 +1,10 @@
-# 眠眠机（IDIC）美化创作 Skill 体系
+# 眠眠机（IDIC）美化创作 Skill 体系 (v2)
 
-本仓库包含一套完整的眠眠机美化创作 Skill 体系与可直接复用的示范代码库，采用 **「1 个总控工作流 + 4 个专项能力包 + 示范模板库」** 的模块化架构，同时支持**纯 CSS 轻量轨**与**「JS 基座 + CSS 条目」微引擎轨**。
+本仓库包含一套完整的眠眠机美化创作 Skill 体系与可直接复用的示范代码库，采用 **「1 个柔性总控工作流 + 4 个专项能力包 + 示范模板库」** 的模块化架构，同时支持**纯 CSS 轻量轨**与**「JS 基座 + CSS 条目」微引擎轨**。
+
+## v2 核心优化
+* **去拷问、护心流**：总控工作流从「强制门禁」升级为「老练设计师搭档」，禁止甩问卷式追问，改为先给视觉提案与下一步建议，轻量引导。
+* **动态场景分流**：支持从 0 起盘、带着半成品优化、单组件 Demo 试错、收尾打包 4 种入口直接切入，不再强行拉回重头定调。
 
 ## 目录结构
 
@@ -8,7 +12,7 @@
 mmianji-beauty-skills/
 ├── README.md
 ├── 01-master-workflow/
-│   └── SKILL.md                         # 总控工作流（Step 0 定调门禁 -> Demo 拆解 -> 缝合 -> 命名与条目整理）
+│   └── SKILL.md                         # 柔性总控工作流（场景分流 / 设计师引导 / Demo 缝合 / 收尾整理）
 ├── 02-css-material-layout/
 │   ├── SKILL.md                         # 视觉材质与布局重构规范
 │   └── templates/
@@ -34,9 +38,3 @@ mmianji-beauty-skills/
         ├── bubble-particles-and-send-spark.js # 示范：气泡星屑粒子 + 发送键冰晶动效
         └── aquamarine-gem-component.js  # 示范：Shadow DOM Web Component 独立动效挂件骨架
 ```
-
-## 快速使用
-
-1. 将整个目录放入你的 AI 编程工具（如 Claude Code / Codex / Cursor）的 Skills 目录，或直接推送到你的 GitHub 仓库。
-2. 新建美化项目时，先加载 `01-master-workflow/SKILL.md`，让 AI 严格执行 **Step 0 前置定调访谈**。
-3. 需要某项具体效果时，直接引用对应 `templates/` 中的示范代码作为基准，要求 AI 保留核心机制并适配新主题配色与视觉意象。
