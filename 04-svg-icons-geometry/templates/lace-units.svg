@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="112" viewBox="0 -2 60 28">
+  <!--
+    原成品的 12 单位蕾丝单元：浅色 ps-lace、深色 ps-lace-ink。
+    第一条路径为偏移底线/阴影：浅色 #815d6d、深色 #ad7e93；
+    第二条路径为主体描边：浅色 #dfc8c2、深色 #312530；
+    第三条路径为高光细节：浅色 #e7d5ce、深色 #75556b；
+    圆点填色跟主体色一致；可分别替换 fill 调整圆点。
+    在目标 SVG 的 defs 中复用这两个 g，以每 12 单位平铺 use。
+  -->
+  <defs>
+    <g id="ps-lace"><path d="M0 1H12M0 1.4Q1 7 3 6Q5 15 9 6Q12 5 12 1" fill="none" stroke="#815d6d" stroke-width="1.35" stroke-linejoin="round" stroke-linecap="round"/><path d="M0 0H12M0 0Q0 4.3 2.6 5.4Q3.1 10 6 10.6Q8.9 10 9.4 5.4Q12 4.3 12 0M0 1Q3 1.2 5 6.1Q4.6 2.9 6 1.5Q7.4 2.9 7 6.1Q9 1.2 12 1M3 5.3Q5 4.7 6 8.5Q7.2 4.8 9 5.3" fill="none" stroke="#dfc8c2" stroke-width="1.02" stroke-linejoin="round" stroke-linecap="round"/><path d="M0-.9H12M3.1 5.4 4.3 7.6M8.8 5.3 7.8 7.5" fill="none" stroke="#e7d5ce" stroke-width="0.75" stroke-linejoin="round" stroke-linecap="round"/><circle cx="6" cy="11.3" r="0.86" fill="#dfc8c2"/></g>
+    <g id="ps-lace-ink"><path d="M0 1H12M0 1.4Q1 7 3 6Q5 15 9 6Q12 5 12 1" fill="none" stroke="#ad7e93" stroke-width="1.35" stroke-linejoin="round" stroke-linecap="round"/><path d="M0 0H12M0 0Q0 4.3 2.6 5.4Q3.1 10 6 10.6Q8.9 10 9.4 5.4Q12 4.3 12 0M0 1Q3 1.2 5 6.1Q4.6 2.9 6 1.5Q7.4 2.9 7 6.1Q9 1.2 12 1M3 5.3Q5 4.7 6 8.5Q7.2 4.8 9 5.3" fill="none" stroke="#312530" stroke-width="1.02" stroke-linejoin="round" stroke-linecap="round"/><path d="M0-.9H12M3.1 5.4 4.3 7.6M8.8 5.3 7.8 7.5" fill="none" stroke="#75556b" stroke-width="0.75" stroke-linejoin="round" stroke-linecap="round"/><circle cx="6" cy="11.3" r="0.86" fill="#312530"/></g>
+  </defs>
+  <!-- 展示两种原版单元的平铺；实际使用时可复制 defs，按宽度增减 use。 -->
+  <use href="#ps-lace" x="0" y="0"/>
+  <use href="#ps-lace" x="12" y="0"/>
+  <use href="#ps-lace" x="24" y="0"/>
+  <use href="#ps-lace" x="36" y="0"/>
+  <use href="#ps-lace" x="48" y="0"/>
+  <use href="#ps-lace-ink" x="0" y="14"/>
+  <use href="#ps-lace-ink" x="12" y="14"/>
+  <use href="#ps-lace-ink" x="24" y="14"/>
+  <use href="#ps-lace-ink" x="36" y="14"/>
+  <use href="#ps-lace-ink" x="48" y="14"/>
+</svg>

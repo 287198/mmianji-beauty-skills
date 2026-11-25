@@ -1,0 +1,24 @@
+/*
+ * 可复用蕾丝镶边：从《少女病》按钮边框提取。
+ * 用法：将 .lace-frame 换成目标按钮或容器类名；伪元素不拦截点击。
+ * SVG 为自包含的 data URI，不依赖美化基座；编码后的 %23 表示 #。
+ * 描边色：%23a87590；圆点色：%23c48ca8，按主题替换编码值。
+ * 也可编辑相邻的 lace-border-source.svg 后改为 url("./lace-border-source.svg")；
+ * 若需要单文件复制，请将修改后的 SVG URL 编码并替换 data URI。
+ * 阴影色可按需修改下方注释中的 drop-shadow；原成品边框本身没有独立阴影图层。
+ * 切片与边框：原图 60×60，slice 18，width 12px，round 平铺。
+ */
+.lace-frame { position: relative; }
+.lace-frame::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  pointer-events: none;
+  border: 12px solid transparent;
+  border-image-source: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23a87590%22%20stroke-width%3D%22.8%22%3E%3Crect%20x%3D%229%22%20y%3D%229%22%20width%3D%2242%22%20height%3D%2242%22%20rx%3D%2212%22%2F%3E%3Crect%20x%3D%2211%22%20y%3D%2211%22%20width%3D%2238%22%20height%3D%2238%22%20rx%3D%2210%22%2F%3E%3Cpath%20d%3D%22M18%208%20Q21%201%2024%208%20Q27%201%2030%208%20Q33%201%2036%208%20Q39%201%2042%208%20M18%2052%20Q21%2059%2024%2052%20Q27%2059%2030%2052%20Q33%2059%2036%2052%20Q39%2059%2042%2052%20M8%2018%20Q1%2021%208%2024%20Q1%2027%208%2030%20Q1%2033%208%2036%20Q1%2039%208%2042%20M52%2018%20Q59%2021%2052%2024%20Q59%2027%2052%2030%20Q59%2033%2052%2036%20Q59%2039%2052%2042%22%2F%3E%3Cpath%20d%3D%22M9%2017%20Q6%2010%2017%209%20M43%209%20Q54%2010%2051%2017%20M9%2043%20Q6%2050%2017%2051%20M43%2051%20Q54%2050%2051%2043%22%2F%3E%3Cpath%20d%3D%22M19%209l2%203m4-3%202%203m4-3%202%203m4-3%202%203%20M19%2051l2-3m4%203%202-3m4%203%202-3m4%203%202-3%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23c48ca8%22%3E%3Ccircle%20cx%3D%2221%22%20cy%3D%225%22%20r%3D%22.65%22%2F%3E%3Ccircle%20cx%3D%2227%22%20cy%3D%225%22%20r%3D%22.65%22%2F%3E%3Ccircle%20cx%3D%2233%22%20cy%3D%225%22%20r%3D%22.65%22%2F%3E%3Ccircle%20cx%3D%2239%22%20cy%3D%225%22%20r%3D%22.65%22%2F%3E%3Ccircle%20cx%3D%2221%22%20cy%3D%2255%22%20r%3D%22.65%22%2F%3E%3Ccircle%20cx%3D%2227%22%20cy%3D%2255%22%20r%3D%22.65%22%2F%3E%3Ccircle%20cx%3D%2233%22%20cy%3D%2255%22%20r%3D%22.65%22%2F%3E%3Ccircle%20cx%3D%2239%22%20cy%3D%2255%22%20r%3D%22.65%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  border-image-slice: 18;
+  border-image-width: 12px;
+  border-image-repeat: round;
+  z-index: 1;
+  /* 如需环境阴影，可按主题另加：filter: drop-shadow(0 1px 2px #a87590); */
+}

@@ -1,0 +1,31 @@
+/*
+ * 无粒子气泡入场示范：提取自《少女病》无粒子合集。
+ * 把本文件加入聊天窗口 CSS；仅在宿主确认某条消息是当前会话中新到达的消息时，
+ * 对该条 .message-row 临时添加 mm-bubble-arriving，并在 animationend 或卸载时移除。
+ * 发送消息与接收消息都需经过各自可靠的新消息事件；仅凭 DOM 新增不能辨别历史恢复。
+ * 打开/切换会话、重绘、重试、恢复历史、加载小剧场时都不要加该类，避免反复播放和跳转。
+ * 不提供或默认添加粒子；应在真实设备上验证动画、滚动与页面生命周期。
+ */
+@media (prefers-reduced-motion: no-preference) {
+  #chat-window-view #message-container .message-row.mm-bubble-arriving:not(.message-row--html-widget):not(.message-row--silly-mixed):not(.message-row--group-rich).assistant-row {
+    animation: mmBubbleArriveLeft 0.36s cubic-bezier(.22, 1.12, .36, 1) both;
+  }
+  #chat-window-view #message-container .message-row.mm-bubble-arriving:not(.message-row--html-widget):not(.message-row--silly-mixed):not(.message-row--group-rich).user-row {
+    animation: mmBubbleArriveRight 0.36s cubic-bezier(.22, 1.12, .36, 1) both;
+  }
+  #chat-window-view #message-container .message-row.mm-bubble-arriving:not(.message-row--html-widget):not(.message-row--silly-mixed):not(.message-row--group-rich).system-row {
+    animation: mmBubbleArriveCenter 0.3s ease-out both;
+  }
+  @keyframes mmBubbleArriveLeft {
+    0% { opacity: 0; transform: translate3d(-10px, 8px, 0) scale(.965); }
+    100% { opacity: 1; transform: none; }
+  }
+  @keyframes mmBubbleArriveRight {
+    0% { opacity: 0; transform: translate3d(10px, 8px, 0) scale(.965); }
+    100% { opacity: 1; transform: none; }
+  }
+  @keyframes mmBubbleArriveCenter {
+    0% { opacity: 0; transform: translateY(5px); }
+    100% { opacity: 1; transform: none; }
+  }
+}
